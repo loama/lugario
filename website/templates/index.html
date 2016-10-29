@@ -1,1 +1,57 @@
-index
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="transparent z-depth-0" role="navigation">
+    <div class="top-logo z-depth-1">
+      <img class="img-logo" src="{% static 'img/logo_1.png' %}">
+    </div>
+    <div class="top-change-view z-depth-1">
+      <i class="fa fa-compass icon-button" aria-hidden="true"></i>
+    </div>
+   
+      
+      <div class="search-bar input-field">
+        <input placeholder="dónde" id="search-bar-where" type="text" class="validate">
+      </div>
+   
+    <div class="top-search-button z-depth-1">
+      <i class="fa fa-search icon-button" aria-hidden="true"></i>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      
+    </div>
+  </div>
+
+  <div id="map"></div>
+  <div class="container">
+    <div class="section">
+    </div>  
+    </div>  
+    <div class="section">
+
+    </div>
+  </div>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaxbiDMrb3dOWYRdf8WPTaK3CLd9nZOgo&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+
+  </body>
+</html>
