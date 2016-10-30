@@ -20,6 +20,11 @@ class properties(models.Model):
 	publisher_email = models.CharField(max_length=500, null=True)
 	publisher_link = models.CharField(max_length=500, null=True)
 	property_type = models.CharField(max_length=500)
+	bedrooms = models.FloatField(null=True)
+	bathrooms = models.FloatField(null=True)
+	built_square_meters = models.FloatField(null=True)
+	total_square_meters = models.FloatField(null=True)
+	description = models.CharField(max_length=10000, null=True)
 
 
 				

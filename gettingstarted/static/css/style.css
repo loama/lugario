@@ -22,6 +22,10 @@
 	z-index: 1;
 }
 
+html, body {
+	overflow: hidden;
+}
+
 nav {
 	z-index: 500;
 }
@@ -177,7 +181,11 @@ nav {
 }
 
 #list-view-listings {
-	padding-top: 111px;
+	padding-top: 113px;
+}
+
+#list-view-listings .card {
+	margin: 0;
 }
 
 #list-view-listings .card .col{
@@ -187,9 +195,11 @@ nav {
 	background-size: cover;
 }
 
-#list-view-listings .card .col:hover {
+#list-view-listings .card .col:hover{
+	cursor: pointer;
 	background-color: white;
 }
+
 .button-change-view {
 	width: 44px;
 	height: 44px;
@@ -249,6 +259,27 @@ nav {
     transition: left 0.7s;
 }
 
+.listing-arrow-card {
+	width: 44px;
+	height: 100%;
+	background-color: white;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	color: black;
+}
+
+.listing-arrow-card i {
+	margin: 30px 16px;
+	font-size: 20px;
+}
+
+.listing-arrow-card:hover {
+	background-color: #E04537;
+	color: white;
+}
+
 #list-view {
 	position: absolute;
 	top: 0;
@@ -258,6 +289,7 @@ nav {
 	background-color: white;
 	display: none;
 	margin: 0;
+	overflow-y: auto;
 }
 
 @media only screen and (min-width: 992px) {
@@ -266,8 +298,14 @@ nav {
 	}
 }
 
-body {
+.list-view-title {
+	color: #E64B40;
+	font-size: 16px;
+	font-weight: 600;
+	width: 200px;
+	white-space: nowrap;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .icon-button:hover {

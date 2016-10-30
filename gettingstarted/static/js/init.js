@@ -25,7 +25,8 @@ function initMap() {
   	rotateControl: false
   });
 
-  var settings = {
+  function loadProperties() {
+  	var settings = {
 	  "async": true,
 	  "crossDomain": true,
 	  "url": "https://lugarapi.herokuapp.com/website_properties",
@@ -36,32 +37,48 @@ function initMap() {
 	}
 
 	$.ajax(settings).done(function (response) {
+	  $('#list-view-listings').empty();
 	  for (i=0; i < response.length; i++) {
 	  	var image = 'static/img/map_marker.png';
-	  	var location = JSON.stringify(response[i].location);
-		var latitude = location.split(",")[10].split(":")[1];
+	  	var location = JSON.parse(response[i].location);
+	  	//console.log(location);
+		var marker_latitude = location.latitude;
 		//console.log(latitude);
-		var longitude = location.split(",")[11].split(":")[1];
+		var marker_longitude = location.longitude;
 		//console.log(longitude);
-		if(isNaN(latitude)) {}
-			else {
-				if (isNaN(longitude)) {}
-					else {
-						console.log(latitude);
-						eval('var marker' + i + ' = new google.maps.Marker({' +
-						    'position: {lat: ' + latitude + ', lng: ' + longitude + '},' +
-						    'title: "' + response[i].id + '",' +
-						    'map: map,' +
-						    'icon: "' + image + '"});' + 
-						    'marker' + i + '.addListener("click", function() {' +
-							    'console.log(marker' + i + '.getTitle())' +
-							'});');
-					}
-			}
+		if(isNaN(marker_latitude) || isNaN(marker_longitude)) {}
+		else {
+			if (marker_latitude.length != "") {
+				//console.log(marker_latitude);
+				eval('var marker' + i + ' = new google.maps.Marker({' +
+				    'position: {lat: ' + marker_latitude + ', lng: ' + marker_longitude + '},' +
+				    'title: "' + response[i].id + '",' +
+				    'map: map,' +
+				    'icon: "' + image + '"});' + 
+				    'marker' + i + '.addListener("click", function() {' +
+					    'console.log(marker' + i + '.getTitle())' +
+					'});');
+				var thumbnail = JSON.parse(response[i].pictures)
+				$('#list-view-listings').append('<div class="card row">' +
+											       '<div class="col s4 m2" style="background-image: url(' + thumbnail[0].url + ');">'
+											     +   '</div>'
+											     +   '<div class="col s8 m10">'
+											     +	   '<span class="list-view-title">' + response[i].title + '</span>' + '<br>'
+											     +	   '<span class="list-view-text">' + 'lorem ipsum' + '</span>'
+											     +     '<div class="card listing-arrow-card">'
+											     +       '<i class="fa fa-chevron-right" aria-hidden="true"></i>'
+											     +     '</div>'
+											     +   '</div>'
+											     + '</div>');
+			}	
+			
+		}
 		
 	  }
 	  console.log(i);
 	});
+  };
+  loadProperties();
 
   // places autocomplete
 
