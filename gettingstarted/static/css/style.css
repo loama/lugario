@@ -315,14 +315,25 @@ nav {
 
 .view-indicator {
 	width: 44px;
-	height: 44px;
+	height: 46px;
 	position: absolute;
-	bottom: 3px;
+	bottom: 1px;
 	left: 49px;
 	z-index: 501;
 	margin: 0;
 	-webkit-transition: left 0.7s; /* Safari */
     transition: left 0.7s;
+}
+
+.listing {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	display: none;
+	z-index: 550;
 }
 
 .listing-arrow-card {

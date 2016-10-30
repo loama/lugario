@@ -7,7 +7,9 @@
 })(jQuery); // end of jQuery name space
 
 //map
-function initMap() {
+
+  var markers_length = 0;
+function initMap() {	
   var w = window.innerWidth;
   disableDefaultUIMaps = true;
   if (w < 992) {
@@ -26,6 +28,7 @@ function initMap() {
   });
 
   function loadProperties() {
+  	console.log('properties');
   	var settings = {
 	  "async": true,
 	  "crossDomain": true,
@@ -75,11 +78,16 @@ function initMap() {
 		}
 		
 	  }
-	  console.log(i);
+	  markers_length = i;
 	});
   };
   loadProperties();
 
+  	function setMapOnAll(map) {
+	    for (var i = 0; i < markers_length; i++) {
+	      marker[i].setMap(map);
+	    }
+	};
   // places autocomplete
 
   var input = document.getElementById('search-bar-where');
@@ -112,6 +120,10 @@ function initMap() {
   });
 };
 
+function reloadMarkersWithFilters() {
+	setMapOnAll(null);
+}
+
 $("#change-view-list").click( function() {
 	$("#change-view-map").css('color', 'white');
 	$(".view-indicator").css('left', '3px');
@@ -133,6 +145,20 @@ $('#close-filter-view').click( function() {
 
 $('#filter-results').click( function() {
 	$('#filter-view').animateCss('bounceInDown', 'in');
+});
+
+var slider = document.getElementById('test5');
+  noUiSlider.create(slider, {
+   start: [0, 18],
+   connect: true,
+   step: 1,
+   range: {
+     'min': 0,
+     'max': 30
+   },
+   format: wNumb({
+     decimals: 0
+   })
 });
 
 $.fn.extend({
@@ -195,6 +221,31 @@ function mapListingPreview(id) {
 function openListing(id, from) {
 	console.log(id);
 	console.log(from);
+
+	var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://lugarapi.herokuapp.com/website_properties?id=eq." + id ,
+	  "method": "GET",
+	  "headers": {
+	    "cache-control": "no-cache",
+	    "postman-token": "b4f16027-17d3-3848-a397-01feadde92b4"
+	  }
+	}
+
+	$.ajax(settings).done(function (response) {
+		console.log(response[0]);
+		var pictures = JSON.parse(response[0].pictures);
+	  $('#listing-img1').attr('src', pictures[0].url);
+	  $('#listing-img2').attr('src', pictures[1].url);
+	  $('#listing-img3').attr('src', pictures[2].url);
+	  $('#listing-img4').attr('src', pictures[3].url);
+	});
+	$('.listing').css('display', 'block');
+	$('.slider').slider({full_width: true});
+	function closeListing() {
+
+	}
 }
 
 $('.detail-price-back-button').click( function() {
