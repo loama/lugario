@@ -56,16 +56,16 @@ function initMap() {
 				    'map: map,' +
 				    'icon: "' + image + '"});' + 
 				    'marker' + i + '.addListener("click", function() {' +
-					    'console.log(marker' + i + '.getTitle())' +
+					    'mapListingPreview(marker' + i + '.getTitle())' +
 					'});');
-				var thumbnail = JSON.parse(response[i].pictures)
+				var thumbnail = JSON.parse(response[i].pictures);
 				$('#list-view-listings').append('<div class="card row">' +
 											       '<div class="col s4 m2" style="background-image: url(' + thumbnail[0].url + ');">'
 											     +   '</div>'
 											     +   '<div class="col s8 m10">'
 											     +	   '<span class="list-view-title">' + response[i].title + '</span>' + '<br>'
-											     +	   '<span class="list-view-text">' + 'lorem ipsum' + '</span>'
-											     +     '<div class="card listing-arrow-card">'
+											     +	   '<span class="list-view-text">' + response[i].title + '</span>'
+											     +     '<div class="card listing-arrow-card" onclick="openListing(' + response[i].id + ', \'panel\')">'
 											     +       '<i class="fa fa-chevron-right" aria-hidden="true"></i>'
 											     +     '</div>'
 											     +   '</div>'
@@ -135,7 +135,6 @@ $('#filter-results').click( function() {
 	$('#filter-view').animateCss('bounceInDown', 'in');
 });
 
-
 $.fn.extend({
     animateCss: function (animationName, type) {
     	$(this).css('display', 'block');
@@ -148,4 +147,57 @@ $.fn.extend({
             }
         });
     }
+});
+
+function mapListingPreview(id) {
+
+	var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://lugarapi.herokuapp.com/website_properties?id=eq." + id + "",
+	  "method": "GET",
+	  "headers": {
+	    "cache-control": "no-cache",
+	    "postman-token": "11ad607c-bac8-0538-7000-bd798dea4820"
+	  }
+	}
+
+	$.ajax(settings).done(function (response) {
+	  $('#map-preview-property-title').html(response[0].title);
+	  $('#map-preview-property-description').html(response[0].title);
+	  var picture = JSON.parse(response[0].pictures)[0].url;
+	  $('#map-preview-property-image').css("background-image", "url(" + picture + ")");
+
+	  var bed = '<i class="fa fa-bed" aria-hidden="true"></i>';
+	  var apt = '<i class="fa fa-building-o" aria-hidden="true"></i>';
+	  var house = '<i class="fa fa-home" aria-hidden="true"></i>';
+	  
+  	  switch(response[0].property_type) {
+	    case "cuarto":
+	       	var icon = bed;
+	        break;
+	    case "departamento":
+	        var icon = apt;
+	        break;
+	    default:
+	        var icon = house;
+	        console.log('default');
+	  }
+
+	  $('#detail-price-type').html(icon);
+	  $('#detail-price-price').html("$" + response[0].price + response[0].currency_id);
+	  $('#map-property-detail-card').animateCss('bounceInLeft', 'in');
+	  $('#map-property-detail-price').animateCss('bounceInRight', 'in');
+	});
+	
+}
+
+function openListing(id, from) {
+	console.log(id);
+	console.log(from);
+}
+
+$('.detail-price-back-button').click( function() {
+	$('#map-property-detail-card').animateCss('bounceOutLeft', 'out');
+	$('#map-property-detail-price').animateCss('bounceOutRight', 'out');
 });
