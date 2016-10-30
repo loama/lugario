@@ -10,29 +10,66 @@
   <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
   <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
 </head>
 <body>
   <nav class="transparent z-depth-0" role="navigation">
     <div class="top-logo z-depth-1">
       <img class="img-logo" src="{% static 'img/logo_1.png' %}">
     </div>
-    <div class="top-change-view z-depth-1">
-      <i class="fa fa-compass icon-button" aria-hidden="true"></i>
-    </div>
-   
-      
-      <div class="search-bar input-field">
-        <input placeholder="dónde" id="search-bar-where" type="text" class="validate">
+
+    <div class="user" style="background-image: url({% static 'img/user.ico' %})">
+      <div class="user-name">
+        <span>Mi cuenta</span>
       </div>
+    </div>
+
+    <div class="top-change-view z-depth-1" id="filter-results">
+      <i class="fa fa-filter icon-button" aria-hidden="true"></i>
+    </div>
+      
+    <div class="card search-bar input-field">
+      <input placeholder="dónde" id="search-bar-where" type="text" class="validate">
+    </div>
    
     <div class="top-search-button z-depth-1">
       <i class="fa fa-search icon-button" aria-hidden="true"></i>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      
+    <div class="card property-detail">
+      <div class="card property-detail-text">
+        <span class="property-title">title</span>
+        <br>
+        <span class="property-detail-detail">lorem ipsum dolor its a</span>
+      </div>
     </div>
+    <div class="card property-detail-price">
+
+    </div>
+  </div>
+
+  <div class="row card change-view">
+  </div>
+
+  <div class="row change-view-icons">
+    <div class="col s6" id="change-view-list">
+      <i class="fa fa-list" aria-hidden="true"></i>
+    </div>
+    <div class="col s6" id="change-view-map">
+      <i class="fa fa-map-marker" aria-hidden="true" style="margin: 5px 3px;"></i>
+    </div>
+  </div>
+
+  <div class="card view-indicator">
+  </div>
+
+  <div class="animated" id="list-view">
+    
+  </div>
+
+  <div class="animated" id="filter-view">
+    <i class="fa fa-times" aria-hidden="true" id="close-filter-view"></i>
   </div>
 
   <div id="map"></div>
@@ -47,10 +84,10 @@
 
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaxbiDMrb3dOWYRdf8WPTaK3CLd9nZOgo&signed_in=true&libraries=places&callback=initMap"
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaxbiDMrb3dOWYRdf8WPTaK3CLd9nZOgo&libraries=places&callback=initMap"
         async defer></script>
 
   </body>
