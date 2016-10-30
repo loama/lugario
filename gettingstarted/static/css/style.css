@@ -54,13 +54,14 @@ nav {
 }
 
 .user-name span {
-	margin: -20px 5px;
 	position: absolute;
 	font-size: 10px;
 	text-align: center;
 	text-overflow: ellipsis;
 	white-space: nowrap;
   	overflow: hidden;
+  	line-height: 15px;
+  	height: 16px;
   	width: 56px;
 }
 
@@ -175,6 +176,20 @@ nav {
 	text-transform: uppercase;
 }
 
+#list-view-listings {
+	padding-top: 111px;
+}
+
+#list-view-listings .card .col{
+	height: 80px;
+	background-color: #EFEFEF;
+	background-position: center center;
+	background-size: cover;
+}
+
+#list-view-listings .card .col:hover {
+	background-color: white;
+}
 .button-change-view {
 	width: 44px;
 	height: 44px;
@@ -226,7 +241,7 @@ nav {
 	width: 44px;
 	height: 44px;
 	position: absolute;
-	bottom: 2px;
+	bottom: 3px;
 	left: 49px;
 	z-index: 501;
 	margin: 0;
@@ -242,6 +257,13 @@ nav {
 	z-index: 450;
 	background-color: white;
 	display: none;
+	margin: 0;
+}
+
+@media only screen and (min-width: 992px) {
+	#list-view {
+		width: 67vw;
+	}
 }
 
 body {
