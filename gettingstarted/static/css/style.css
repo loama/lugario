@@ -133,6 +133,8 @@ nav {
 	position: absolute;
 	top: 120px;
 	left: 7px;
+	display: none;
+	cursor: pointer;
 }
 
 .detail-price-back-button {
@@ -183,7 +185,8 @@ nav {
 	position: absolute;
 	right: 7px;
 	bottom: 18px;
-	z-index: 400;
+	z-index: 600;
+	display: none;
 }
 
 .property-detail-image {
@@ -323,6 +326,30 @@ nav {
 	margin: 0;
 	-webkit-transition: left 0.7s; /* Safari */
     transition: left 0.7s;
+}
+
+#listing-close {
+
+}
+
+#listing-title {
+
+}
+
+#listing-meters {
+
+}
+
+#listing-price {
+
+}
+
+#listing-roms {
+
+}
+
+#listing-bathrooms {
+
 }
 
 .listing {

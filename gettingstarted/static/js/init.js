@@ -9,6 +9,7 @@
 //map
 
   var markers_length = 0;
+  var select_property = 0;
 function initMap() {	
   var w = window.innerWidth;
   disableDefaultUIMaps = true;
@@ -59,10 +60,11 @@ function initMap() {
 				    'map: map,' +
 				    'icon: "' + image + '"});' + 
 				    'marker' + i + '.addListener("click", function() {' +
-					    'mapListingPreview(marker' + i + '.getTitle())' +
+					    'mapListingPreview(marker' + i + '.getTitle());' +
+					    'select_property = ' + response[i].id + ';' +
 					'});');
 				var thumbnail = JSON.parse(response[i].pictures);
-				$('#list-view-listings').append('<div class="card row">' +
+				$('#list-view-listings').append('<div class="card row" id="list-view-property-' + response[i].id + '" onmouseover="listListingPreview(' + response[i].id + ',\'' + response[i].currency_id + '\',' + response[i].price + ',\'' + response[i].property_type + '\')" onclick="openListing(' + response[i].id + ',' + '\'list\'' + ')">' +
 											       '<div class="col s4 m2" style="background-image: url(' + thumbnail[0].url + ');">'
 											     +   '</div>'
 											     +   '<div class="col s8 m10">'
@@ -175,6 +177,28 @@ $.fn.extend({
     }
 });
 
+function listListingPreview(id, currency_id, price, property_type) {
+
+	  var bed = '<i class="fa fa-bed" aria-hidden="true"></i>';
+	  var apt = '<i class="fa fa-building-o" aria-hidden="true"></i>';
+	  var house = '<i class="fa fa-home" aria-hidden="true"></i>';
+	  
+	  switch(property_type) {
+	    case "cuarto":
+	       	var icon = bed;
+	        break;
+	    case "departamento":
+	        var icon = apt;
+	        break;
+	    default:
+	        var icon = house;
+	        console.log('default');
+	  }
+
+	  $('#detail-price-type').html(icon);
+	  $('#detail-price-price').html("$" + price + currency_id);
+}
+
 function mapListingPreview(id) {
 
 	var settings = {
@@ -240,6 +264,11 @@ function openListing(id, from) {
 	  $('#listing-img2').attr('src', pictures[1].url);
 	  $('#listing-img3').attr('src', pictures[2].url);
 	  $('#listing-img4').attr('src', pictures[3].url);
+
+	  $('#listing-meters').html(response[0].total_square_meters);
+	  $('#listing-price').html(response[0].price);
+	  $('#listing-roms').html(response[0].bedrooms);
+	  $('#listing-bathrooms').html(response[0].bathrooms);
 	});
 	$('.listing').css('display', 'block');
 	$('.slider').slider({full_width: true});
@@ -251,4 +280,5 @@ function openListing(id, from) {
 $('.detail-price-back-button').click( function() {
 	$('#map-property-detail-card').animateCss('bounceOutLeft', 'out');
 	$('#map-property-detail-price').animateCss('bounceOutRight', 'out');
+	$('#listing-detail').css('display', 'none');
 });

@@ -34,11 +34,11 @@
     </div>
    
     <div class="top-search-button z-depth-1">
-      <i class="fa fa-search icon-button" aria-hidden="true"></i>
+      <i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 28px; margin: 10px 10px; position: absolute;"></i>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
-    <div class="card property-detail" id="map-property-detail-card">
+    <div class="card property-detail" id="map-property-detail-card" onclick="openListing(select_property, 'map')">
       <div class="card property-detail-image" id="map-preview-property-image">
       </div>
       <div class="card property-detail-text">
@@ -69,35 +69,32 @@
         <li>
           <img src="http://lorempixel.com/580/250/nature/1" id="listing-img1"> <!-- random image -->
           <div class="caption center-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
           </div>
         </li>
         <li>
           <img src="http://lorempixel.com/580/250/nature/2" id="listing-img2"> <!-- random image -->
           <div class="caption left-align">
-            <h3>Left Aligned Caption</h3>
-            <h5 class="light grey-text text-lighten-3" id="listing-img1">Here's our small slogan.</h5>
           </div>
         </li>
         <li>
           <img src="http://lorempixel.com/580/250/nature/3" id="listing-img3"> <!-- random image -->
           <div class="caption right-align">
-            <h3>Right Aligned Caption</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
           </div>
         </li>
         <li>
           <img src="http://lorempixel.com/580/250/nature/4" id="listing-img4"> <!-- random image -->
           <div class="caption center-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
           </div>
         </li>
       </ul>
     </div>
     <div id="listing-detail" class="listing-detail">
-      
+      <i class="fa fa-window-close" aria-hidden="true" id="listing-close" class="listing-close"></i>
+      <span id="listing-title"> title</span><br>
+      <span id="listing-meters"></span> metros<br>
+      <span id="listing-price"></span> price<br>
+      <span id="listing-roms"></span> roms<br>
+      <span id="listing-bathrooms"> bathrooms</span>
     </div>
   </div>
 
